@@ -1,0 +1,821 @@
+<html>    
+<head>
+    <title>Puzzles</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+
+    @font-face {
+    font-family: Font;
+    src: url(Mission-Script.otf);
+}
+        #ul1{
+            list-style-type:none;
+            text-align:right;
+            padding: 8px;
+            margin: 0px;
+            height:40px;
+            width:100%;
+            position:fixed;
+            z-index: 1001;
+        }
+        li{
+
+            display:inline;
+            padding: 24px;
+            font-size: 18;   
+
+        }
+        a{
+            margin-top:7px;
+             display: inline-block;
+            position: relative;
+            text-decoration:none;
+            color:white;
+            height:100px; 
+            
+        }
+        a:after {
+    border-radius: 1.5px;
+    content: '';
+    margin:auto;
+    display: block;
+    height: 3px;
+    width: 0px;
+    background: transparent;
+    transition: width .2s ease, background-color .2s ease;
+    margin-top:5px;
+}
+a:hover:after {
+    width: 100%;
+    background: white;
+
+}
+#current:after{
+    width: 100%;
+    background: white;
+    
+}
+.imageDiv{
+    width:200px;
+}
+.imageMain{
+    width:60%;
+    height:200px;
+    padding:30px;
+    float:center;
+}
+#pac-input{
+    width:50%;
+    border: 0;
+    border-bottom: 3px solid white;
+    padding:13px;
+    font-size: 18;
+    color :white;
+    background-color: #3C3C3B;
+    outline: none;
+
+}
+.detect{
+    border: none;
+    color: rgb(250,80,80);
+    padding: 10px 16px 10px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    margin: 10px;
+    cursor: pointer; 
+    background: url(location-2.png) no-repeat scroll 9px 11px; 
+    padding-left:40px; 
+    background-size:20px 20px;
+    background-color: white;
+    font-size: 18;
+    border-style: solid;
+    border-color:white;
+    border-width: 2px;
+    -webkit-transition:0.2s; /* Safari */
+    transition: 0.2s;
+    transition-timing-function: ease-in;
+}
+.detect:hover{
+    
+    color: white;
+    background: url(hover-location-2.png) no-repeat scroll 9px 11px;
+    background-color:rgb(250,80,80);
+    background-size:20px 20px;
+
+}
+ .separator {
+      content: '';
+      display: inline-block;
+      background: #3C3C3B;
+      height: 18px;
+      width: 1px;
+      vertical-align: middle;
+      margin:0px 3px 0px 3px;
+    }
+#map{
+    border-style: solid;
+    border-width: 2px;
+    height:800px;
+    width: 800px;
+    background: white;
+    border-radius: 10px;
+    float:left;
+    margin:20px;
+}
+#mapOver{
+    height:1000px;
+    width: 1300px;
+    
+    padding:0px;
+}
+#list{
+    width:400px;
+    height:800px;
+    margin:20px;
+    border-style: solid;
+    border-color: white;
+    float:right;
+    border-width: 2px;
+    border-radius: 10px;
+    overflow:hidden;
+    overflow-y:scroll;
+}
+form{
+    float: center;
+}
+
+
+body{
+    margin:0px;
+    background-color:#3C3C3B;
+    color:white;
+}
+
+.parallax {
+    /* The image used */
+    background-image: url("page-title-2.jpg");
+
+    /* Set a specific height */
+    min-height: 600px; 
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.bodyDiv{
+    background: -moz-linear-gradient(top, rgba(60,60,59,0) 0%, rgba(60,60,59,1) 16%, rgba(60,60,59,1) 26%, rgba(60,60,59,1) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, rgba(60,60,59,0) 0%,rgba(60,60,59,1) 16%,rgba(60,60,59,1) 26%,rgba(60,60,59,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, rgba(60,60,59,0) 0%,rgba(60,60,59,1) 16%,rgba(60,60,59,1) 26%,rgba(60,60,59,1) 100%);
+}
+
+.Order{
+border: none;
+    color: white;
+     padding: 10px 80px 10px 80px;
+    border-radius: 8px;
+    text-decoration: none;
+    margin: 10px;
+    cursor: pointer; 
+    background-color: rgb(0,128,256);
+    font-size: 18;
+}
+
+table, td, th {    
+    border: 1px 1px 1px 1px;
+    text-align: left;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom:10px;
+    margin-top:10px;
+}
+
+th, td {
+    padding: 15px;
+    font-weight: bold;
+}
+
+ #infowindow-content .title {
+        font-weight: bold;
+      }
+
+ #infowindow-content {
+        display: none;
+      }
+
+#map #infowindow-content {
+        display: inline;
+      }
+
+
+    </style>
+</head>
+
+<body>
+    <div class="parallax">
+            <ul id = "ul1">
+            <li ><a href="apple.html">Home</a>
+            <li><a href="apple.html">About Us</a>
+            <li><a href="apple.html">Menu</a>
+            <li><a href="apple.html">I'm at the Restaurant</a>
+            <li> <a  id="current" href="apple.html">Order Online</a>
+            <li><a href="apple.html">Track Order</a>
+            <li><a href="apple.html">Contact Us</a>
+            </ul>
+
+                    <br><br><br><br><br><br><br><br><br><br><br><br>
+
+<center><h1 style="color:#d0f441; font-family:Font; font-size:48;">
+ Delecious Food Awaits you....</h1></center>
+<br><br><br>
+ <div class="bodyDiv">
+    <br><br><br><br><br><br><br><br><br><br><br><br>
+        <h1>
+            <br><br>
+        <center> How It works...</center> 
+        </h1>
+    <center>
+    <div class ="imageMain">
+              <div class = "imageDiv" style="float:right;">
+        <center><img src="3.png" style = " max-width:200px; max-height:200px; width: auto;height: auto;"><br>
+        <p>Track your order once finished</p>
+        </center>
+        </div>
+     <div class = "imageDiv" style="float:left;">
+
+        <center><img src="1.png" style = " max-width:200px; max-height:200px; width: auto;height: auto;"><br>
+        <p>Explore outlets near you that deliver</p>
+        </center>
+        </div>
+        <div class = "imageDiv" style="float:center;">
+        <center><img src="2.png" style = " max-width:200px; max-height:200px; width: auto;height: auto;"><br>
+        <p>Browse menus and build your order</p>
+        </center>
+        </div>
+        <br><br><br><br>
+    <form>
+        <input id = "pac-input" type = "text" placeholder="Enter your Location" name="location" style = "background: url(location.png) no-repeat scroll 5px 15px; padding-left:35px; background-size:20px 20px" >
+       <button type="button" class="detect">
+
+  Detect
+</button>
+    </form>
+   <div id="infowindow-content">
+      <span id="place-name"  class="title"></span><br>
+      <span id="place-address"></span>
+    </div>
+    </div>
+</center>
+<br><br><br><br><br><br><br><br><br>
+<center>
+<div id = "mapOver">
+<div id = "map">
+</div>
+<div id ="list">
+<div style="background-color:rgb(139,210,159); height:10px; width:100%;"></div>
+<div style ="height:60px; width:100%; background-color:white; border-style:solid; border: 0px 0px 3px 0px;">
+<h2 style="color:#3c3c3b;"> Branches Near you</h2>
+</div><table id = "Outlets">
+
+
+</table>
+<div style ="height:60px; width:100%; background-color:white; border-style:solid; border: 0px 0px 3px 0px;">
+<h2 style="color:#3c3c3b;"> Popular Items Near you</h2>
+</div><table>
+  <tr>
+    <td><img src ="menu-item-08.png" style="width:85px; height:85px; "></td>
+    <td>Item 1</td>
+    <td style="color:green;">500.00</td>
+  </tr>
+   <tr>
+    <td><img src ="menu-item-09.png" style="width:85px; height:85px; "></td>
+    <td>Item 1</td>
+    <td style="color:green;">500.00</td>
+  </tr>
+   <tr>
+    <td><img src ="menu-item-10.png" style="width:85px; height:85px; "></td>
+    <td>Item 1</td>
+    <td style="color:green;">500.00</td>
+  </tr>
+   <tr>
+    <td><img src ="menu-item-11.png" style="width:85px; height:85px; "></td>
+    <td>Item 1</td>
+    <td style="color:green;">500.00</td>
+  </tr>
+
+   <tr>
+    <td><img src ="menu-item-14.png" style="width:85px; height:85px; "></td>
+    <td>Item 1</td>
+    <td style="color:green;">500.00</td>
+  </tr>
+   <tr>
+    <td><img src ="menu-item-15.png" style="width:85px; height:85px; "></td>
+    <td>Item 1</td>
+    <td style="color:green;">500.00</td>
+  </tr>
+   <tr>
+    <td><img src ="menu-item-17.png" style="width:85px; height:85px; "></td>
+    <td>Item 1</td>
+    <td style="color:green;">500.00</td>
+  </tr>
+</table>
+</div>
+
+<input type="checkbox" name="vehicle" value="Bike"> I confirm this is my address<br><br><br><br>
+
+ <button type="Submit" class="Order" onclick = "goTonextPage();">
+  Take me to the menu
+</button>
+
+</div>
+</div>
+</div>
+</center>
+    <script>
+
+
+var rad = function(x) {
+  return x * Math.PI / 180;
+};
+
+var getDistance = function(l1,l2, p2) {
+  var R = 6378137; // Earth’s mean radius in meter
+  var dLat = rad(p2.lat() - l1);
+  var dLong = rad(p2.lng() - l2);
+  var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(rad(l1)) * Math.cos(rad(p2.lat())) *
+    Math.sin(dLong / 2) * Math.sin(dLong / 2);
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  var d = R * c;
+  return (d/1000).toFixed(1); // returns the distance in meter
+};
+
+
+function myMap() {
+  var mapCanvas = document.getElementById("map");
+  var mapOptions = {
+    center: new google.maps.LatLng(12.9716, 79.1588), zoom: 13
+  };
+  var map = new google.maps.Map(mapCanvas, mapOptions);
+}
+$ulBar = document.getElementById("ul1");
+window.onscroll = function () { 
+    "use strict";
+    if (document.body.scrollTop >= 100 ) {
+        document.getElementById("ul1").style.backgroundColor = "rgb(78,102,96)";
+        
+    } 
+    else {
+        document.getElementById("ul1").style.backgroundColor = "transparent";
+    }
+};
+var latToSend = 0.0;
+var lonToSend = 0.0;
+function goTonextPage(){
+    window.location="ConfirmOrder.php?lat=" + latToSend + "&lon=" + lonToSend ;
+}
+
+
+
+function initMap() {
+
+        // Create a new StyledMapType object, passing it an array of styles,
+        // and the name to be displayed on the map type control.
+        var styledMapType = new google.maps.StyledMapType(
+            [
+  {
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#1d2c4d"
+      }
+    ]
+  },
+  {
+    "elementType": "labels",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#8ec3b9"
+      }
+    ]
+  },
+  {
+    "elementType": "labels.text.stroke",
+    "stylers": [
+      {
+        "color": "#1a3646"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative.country",
+    "elementType": "geometry.stroke",
+    "stylers": [
+      {
+        "color": "#4b6878"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative.land_parcel",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative.land_parcel",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#64779e"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative.neighborhood",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative.province",
+    "elementType": "geometry.stroke",
+    "stylers": [
+      {
+        "color": "#4b6878"
+      }
+    ]
+  },
+  {
+    "featureType": "landscape.man_made",
+    "elementType": "geometry.stroke",
+    "stylers": [
+      {
+        "color": "#334e87"
+      }
+    ]
+  },
+  {
+    "featureType": "landscape.natural",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#023e58"
+      }
+    ]
+  },
+  {
+    "featureType": "poi",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#283d6a"
+      }
+    ]
+  },
+  {
+    "featureType": "poi",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#6f9ba5"
+      }
+    ]
+  },
+  {
+    "featureType": "poi",
+    "elementType": "labels.text.stroke",
+    "stylers": [
+      {
+        "color": "#1d2c4d"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.business",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.park",
+    "elementType": "geometry.fill",
+    "stylers": [
+      {
+        "color": "#023e58"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.park",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#3C7680"
+      }
+    ]
+  },
+  {
+    "featureType": "road",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#304a7d"
+      }
+    ]
+  },
+  {
+    "featureType": "road",
+    "elementType": "labels.icon",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "road",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#98a5be"
+      }
+    ]
+  },
+  {
+    "featureType": "road",
+    "elementType": "labels.text.stroke",
+    "stylers": [
+      {
+        "color": "#1d2c4d"
+      }
+    ]
+  },
+  {
+    "featureType": "road.highway",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#2c6675"
+      }
+    ]
+  },
+  {
+    "featureType": "road.highway",
+    "elementType": "geometry.stroke",
+    "stylers": [
+      {
+        "color": "#255763"
+      }
+    ]
+  },
+  {
+    "featureType": "road.highway",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#b0d5ce"
+      }
+    ]
+  },
+  {
+    "featureType": "road.highway",
+    "elementType": "labels.text.stroke",
+    "stylers": [
+      {
+        "color": "#023e58"
+      }
+    ]
+  },
+  {
+    "featureType": "transit",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "transit",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#98a5be"
+      }
+    ]
+  },
+  {
+    "featureType": "transit",
+    "elementType": "labels.text.stroke",
+    "stylers": [
+      {
+        "color": "#1d2c4d"
+      }
+    ]
+  },
+  {
+    "featureType": "transit.line",
+    "elementType": "geometry.fill",
+    "stylers": [
+      {
+        "color": "#283d6a"
+      }
+    ]
+  },
+  {
+    "featureType": "transit.station",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#3a4762"
+      }
+    ]
+  },
+  {
+    "featureType": "water",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#0e1626"
+      }
+    ]
+  },
+  {
+    "featureType": "water",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#4e6d70"
+      }
+    ]
+  }
+],
+            {name: 'Styled Map'});
+
+        // Create a map object, and include the MapTypeId to add
+        // to the map type control.
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 12.9716, lng: 79.1588},
+          zoom: 11,
+          mapTypeControlOptions: {
+            mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain',
+                    'styled_map']
+          }
+        });
+        var input = document.getElementById('pac-input');
+        var autocomplete = new google.maps.places.Autocomplete(input);
+          autocomplete.bindTo('bounds', map);
+             var marker = new google.maps.Marker({
+          map: map,
+          anchorPoint: new google.maps.Point(0, -29)
+        });
+        var infowindow = new google.maps.InfoWindow();
+        var infowindowContent = document.getElementById('infowindow-content');
+        infowindow.setContent(infowindowContent);
+        autocomplete.addListener('place_changed', function() {
+          infowindow.close();
+          marker.setVisible(false);
+          var place = autocomplete.getPlace();
+          if (!place.geometry) {
+            // User entered the name of a Place that was not suggested and
+            // pressed the Enter key, or the Place Details request failed.
+            window.alert("No details available for input: '" + place.name + "'");
+            return;
+          }
+                 if (place.geometry.viewport) {
+            map.fitBounds(place.geometry.viewport);
+          } else {
+            map.setCenter(place.geometry.location);
+            map.setZoom(17);  // Why 17? Because it looks good.
+          }
+          infowindowContent.children['place-name'].textContent = place.name;
+          infowindow.open(map, marker);
+         
+          // If the place has a geometry, then present it on a map.
+   
+           });
+        //Associate the styled map with the MapTypeId and set it to display.
+        map.mapTypes.set('styled_map', styledMapType);
+        map.setMapTypeId('styled_map');
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) { 
+            
+              getMarkers(this,map); 
+
+          }  
+
+        };
+          xhttp.open("GET", "index.php", true);
+          xhttp.setRequestHeader("Content-type", "text/xml");
+          xhttp.send();
+
+        var point = new google.maps.LatLng(
+        parseFloat(12.9716),
+        parseFloat(79.1588),
+        
+        );
+        var marker = new google.maps.Marker({
+         map: map,
+         position: point,
+         label: "You are here"
+
+         
+    });
+    }
+
+    function getMarkers(xml,map){
+      var i;
+      var xmlDoc = xml.responseXML;
+      var x = xmlDoc.getElementsByTagName("marker");
+
+      var icon = {
+    url: "resLoc.png", // url
+    scaledSize: new google.maps.Size(25, 25), // scaled size
+    origin: new google.maps.Point(0,0), // origin
+    anchor: new google.maps.Point(0, 0) // anchor
+};
+      for (i = 0; i <x.length; i++) { 
+        console.log(x[i]);
+        var ID = x[i].getAttribute("RestID");
+        var lon = x[i].getAttribute("longitude");
+        var lat = x[i].getAttribute("latitude");
+        var isOpen = "Open";
+        var color = "green";
+        if(x[i].getAttribute("isOpen") == 0) {
+            isOpen = "Closed";
+            color = "red";
+        }
+        console.log(parseFloat(lon));
+        var point = new google.maps.LatLng(
+        parseFloat(lon),
+        parseFloat(lat),
+        
+        );
+        console.log(lat,lon,map.getCenter());
+        latToSend = parseFloat(lon);
+        lonToSend = parseFloat(lat);
+        document.getElementById("Outlets").innerHTML += "<tr><td>Outlet" + ID + "</td><td>" + getDistance(lon,lat,map.getCenter()) + "Km</td> <td style='color:"+ color +"';>" +isOpen+"</td></tr>";
+
+        var marker = new google.maps.Marker({
+         map: map,
+         position: point,
+         label: "",
+         icon: icon
+         
+    });
+}
+  
+}
+
+
+
+
+  
+
+
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALMnQmML5sNshgbgm7C0GiDFJ3fCwAMKM&libraries=places&callback=initMap">
+    </script>
+
+
+            <div style="background-color:rgb(78,102,96);"><hr><center>
+                <a href="apple.html" class="fa fa-facebook" style ="margin:5px;"></a>
+                <a href="apple.html" class="fa fa-twitter" style ="margin:5px;"></a>
+                <a href="apple.html" class="fa fa-instagram" style ="margin:5px;"></a>
+                <a href="apple.html" class="fa fa-linkedin" style ="margin:5px;"></a>
+            </center><hr>
+            </div>
+
+
+
+            <footer height = "50px">
+                <div >
+                    <h5 style="float:left; padding-left:10px;">Copyright Puzzles 2017. All rights reserved.</h5>
+                    <h5 style="float:right; padding-right:10px;"><a href="hello.html" class="term">Policies</a> | <a href="hello.html" class="term">Disclaimer</a> | <a href="hello.html" class="term">Terms and Conditions</a></h5>
+                </div>
+            </footer>
+
+</body>
+
+</html>

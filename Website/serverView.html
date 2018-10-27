@@ -1,0 +1,170 @@
+<html> 
+<style> 
+.floatDiv
+{
+	width : 97%;
+	margin : 20px;
+	padding : 10px;
+	height : 400px;
+	background-color: rgb(228,228,228);
+	float : left;
+	border-radius: 8px;
+}
+
+.childDiv
+{
+	width : 20%;
+	margin-top : 180px;
+	background-color: rgb(228,228,228);
+	float:left;
+}
+.listItemsDiv{
+	width: 75%;
+	margin:20px;
+	float:left;
+	white-space: nowrap;
+    position: relative;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    padding: 15px;
+    margin-bottom:60px;
+
+}
+.item{
+	width: 300px;
+	height: 300px;
+	border-radius : 8px;
+	background-color: white; 
+	padding : 5px; 
+	float: none; 
+	display: inline-block;
+	margin-right : 20px;
+
+}
+
+.circleStatus{
+	position: relative;
+	width : 20px;
+	height: 20px;
+	border-radius: 10px;
+	background-color: rgb(228,228,228);
+	display:inline-block;
+	margin-right:25px;
+}
+
+
+.orderStatusButton{
+	position: relative;
+	width : 70px;
+	height: 35px;
+	border-radius: 5px;
+	background-color: rgb(228,228,228);
+	display:inline-block;
+	margin-right:20px;
+	background-color: rgb(223,98,89);
+	border:none;
+	padding:10px;
+	
+	color:white;
+}
+
+</style> 
+
+<body> 
+	<div class = "floatDiv">
+		<div class = "childDiv"> 
+			<center><h2>Orders</h2></center> 
+		</div>
+		<div class = "listItemsDiv" id = "atRest">
+			<div class = "item"> 
+				<center>
+					<h2>OrderdID : SampleID</h2>
+					<h3>Phone : sample Phone</h3> 
+					<br><br><center>
+					<button class = "orderStatusButton" style = "margin-left:20px;">Packing!</button> 
+					<button class = "orderStatusButton">Preparing!</button> 
+					<button class = "orderStatusButton">Send!</button>
+					</center><br><br><br><br><center>
+					<div class = "circleStatus" style = "margin-left:15px;"><center><h5>Water<h5></center></div>
+					<div class = "circleStatus"><h5>Water<h5></div>
+					<div class = "circleStatus"><center><h5>Water<h5></center></div>
+					<div class = "circleStatus"><center><h5>Water<h5></center></div>
+					<div class = "circleStatus"><center><h5>Water<h5></center></div>
+					<div class = "circleStatus"><center><h5>Water<h5></center></div>
+					</center>
+					<br><br>
+				</center> 
+			</div> 
+		</div>
+	</div> 
+	<div class = "floatDiv">
+		<div class = "childDiv"> 
+			<center><h2>Orders</h2></center> 
+		</div>
+		<div class = "listItemsDiv" id = "orders">
+			<div class = "item"> 
+				<center>
+					<h2>OrderdID : SampleID</h2>
+					<h3>Phone : sample Phone</h3> 
+					<br>
+				</center> 
+			</div> 
+		</div>
+	</div>
+<script> 
+
+	var x = setInterval(function(){
+		var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) { 
+            
+              updateUI(this); 
+
+          }  
+
+        };
+        xhttp.open("GET", "getOrders.php", true);
+        xhttp.setRequestHeader("Content-type", "text/xml");
+        xhttp.send();
+	},5000); 
+
+	function updateUI(xml){
+		var i;
+      	var xmlDoc = xml.responseXML;
+      	//var y = xmlDoc.getElementsByTagName("Orders");
+      	var atRest = xmlDoc.getElementsByTagName("Restaurant");
+      	var orders = xmlDoc.getElementsByTagName("Online");
+      	console.log(atRest);
+      	document.getElementById("atRest").innerHTML  = "";
+      	for (i = 0; i <atRest.length; i++) { 
+        	var ID = atRest[i].getAttribute("ID");
+        	var water = atRest[i].getAttribute("water") == 1 ? "green" : "rgb(228,228,228)";
+        	var clean = atRest[i].getAttribute("clean") == 1 ? "green" : "rgb(228,228,228)";
+        	var util = atRest[i].getAttribute("Utilities") == 1 ? "green" : "rgb(228,228,228)";
+        	var bill = atRest[i].getAttribute("bill") == 1? "green" : "rgb(228,228,228)";
+        	var parcel = atRest[i].getAttribute("parcel") == 1? "green" : "rgb(228,228,228)";
+        	var other = atRest[i].getAttribute("other") == 1? "green" : "rgb(228,228,228)";
+        	var orderID = atRest[i].getAttribute("orderID") == 1 ? "green" : "rgb(228,228,228)";
+
+        	document.getElementById("atRest").innerHTML += "<div class = 'item'> <center><h2>OrderdID : " + ID + "</h2><h3>Phone :sample Phone</h3><br><br><center><button class = 'orderStatusButton' style = 'margin-left:20px;'>Packing!</button><button class = 'orderStatusButton'>Preparing!</button><button class = 'orderStatusButton'>Send!</button></center><br><br><br><br><center><div class = 'circleStatus' style = 'margin-left:15px; background-color:" + water +";'><center><h5>Water<h5></center></div><div class = 'circleStatus' style = 'background-color:" + clean +"'><h5>Clean<h5></div><div class = 'circleStatus' style = 'background-color:" + util +"'><center><h5>Utilities<h5></center></div><div class = 'circleStatus' style = 'background-color:" + bill +"'><center><h5>Bill<h5></center></div><div class = 'circleStatus'><center style = 'background-color:" + parcel +"'><h5>Parcel<h5></center></div><div class = 'circleStatus' style = 'background-color:" + other +"'><center><h5>Other<h5></center></div></center><br><br></center></div>";
+
+    	}
+    	document.getElementById("orders").innerHTML  = "";
+
+    	for (i = 0; i <orders.length; i++) { 
+        	var Name = orders[i].getAttribute("Name");
+        	var Phone = orders[i].getAttribute("Phone");
+        	var status = orders[i].getAttribute("status");
+        	var orderID = orders[i].getAttribute("orderID");
+
+        	document.getElementById("orders").innerHTML += "<div class = 'item'> <center><h2>OrderdID : " + orderID + "</h2><h3>Phone :" + Phone + "</h3><br><br><center><button class = 'orderStatusButton' style = 'margin-left:20px;'>Packing!</button><button class = 'orderStatusButton'>Preparing!</button><button class = 'orderStatusButton'>Send!</button></center><br><br><br><br></div>";
+    	}
+
+		 
+		
+
+	}
+</script>  
+</body> 
+</html> 

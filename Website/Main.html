@@ -1,0 +1,314 @@
+<html>    
+<head>
+    <title>Puzzles</title>
+    <style>
+    @font-face {
+    font-family: Font;
+    src: url(Mission-Script.otf);
+}
+        #ul1{
+            list-style-type:none;
+            text-align:right;
+            padding: 8px;
+            margin: 0px;
+            height:40px;
+            width:100%;
+            position:fixed;
+            z-index: 1003;
+        }
+        li{
+
+            display:inline;
+            padding: 24px;
+            font-size: 18;   
+
+        }
+        a{
+            margin-top:7px;
+             display: inline-block;
+            position: relative;
+            text-decoration:none;
+            color:white;
+            height:100px; 
+            
+        }
+        a:after {
+    border-radius: 1.5px;
+    content: '';
+    margin:auto;
+    display: block;
+    height: 3px;
+    width: 0px;
+    background: transparent;
+    transition: width .2s ease, background-color .2s ease;
+}
+a:hover:after {
+    width: 100%;
+    background: white;
+}
+
+#current:after{
+    width: 100%;
+    background: white;
+    
+}
+
+body{
+    margin:0px;
+    background-color:#3c3c3b;
+    color:white;
+    -webkit-transition: opacity 0.5s;
+}
+#parallax {
+    /* The image used */
+    background-image: url("page-title.jpg");
+
+    /* Set a specific height */
+    min-height: 600px; 
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: -200px -200px;
+    -webkit-transition: opacity 0.5s;
+    }
+#bodyDiv{
+    background: -moz-linear-gradient(top, rgba(60,60,59,0) 0%, rgba(60,60,59,1) 56%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, rgba(60,60,59,0) 0%,rgba(60,60,59,1) 56%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, rgba(60,60,59,0) 0%,rgba(60,60,59,1) 56%);
+-webkit-transition: opacity 0.5s;
+}
+
+.twoBut{
+border: none;
+    color: white;
+     padding: 30px 80px 30px 80px;
+    border-radius: 8px;
+    text-decoration: none;
+    margin: 20px;
+    cursor: pointer; 
+    background-color: rgb(0,128,256);
+    font-size: 18;
+
+}
+#chooseSeatDiv{
+width:500px;
+height:500px;
+  position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top:  -250px;
+    margin-left: -250px;
+    z-index: 1000;
+    background-color:white;
+    border-radius:10px;
+    opacity:0;
+    -webkit-transition: opacity 0.5s;
+
+}
+
+
+.seatImage{
+
+    position: absolute;
+}
+#seatNumber{
+    color:#dddddd;
+    height:80px;
+    width:80px;
+    border-style:solid;
+    border-width:3px;
+    border-radius: 50%;
+    position: absolute;
+    top:50%;
+    left:50%;
+     margin-top:  -40px;
+    margin-left: -40px;
+    font-size:72;
+    border-color: #dddddd;
+    }
+.seatImage:hover{
+    opacity: 0;
+
+}
+#AlreadySeated{
+    position: absolute;
+    height:0%;
+    width:100%;
+    top:100%;
+    background-color: #3c3c3b;
+    overflow: hidden;
+}
+
+.ele{
+    height:200px;
+    width:200px;
+    border-radius:50%;
+    background-color: #5b5b5a;;
+    margin:20px;
+    background-image: url("waterGlass.png");
+    background-size:  auto 115px;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-width:0px;
+    border-style: solid;
+    -webkit-transition: border-width 0.4s;
+}
+
+.ele:hover{
+    border-width:3px;
+}
+.containStuff{
+    top:15%;
+    width:60%;
+    height:auto;
+    padding:20px;
+    left:20%;
+    right: 20%;
+    position: absolute;
+
+}
+</style>
+</head>
+<body>
+    <div id ="chooseSeatDiv">
+            <div id ="seatNumber"><center>1</center></div>
+            <img src ="table-2.png" style="top:60px; left:60px; position:absolute;">
+            <img src ="table-1.png" style="top:60px; left:60px;" class="seatImage">
+            
+
+            <img src ="table-3.png" style="top:60px; right:60px; position:absolute;">
+
+            <img src ="table-2.png" style="bottom:60px; left:60px;position:absolute;">
+            <img src ="table-1.png" style="bottom:60px; left:60px;" class="seatImage">
+            
+            <img src ="table-2.png" style="bottom:60px; right:60px; position:absolute;">
+            <img src ="table-1.png" style="bottom:60px; right:60px;" class = "seatImage">
+            
+</table>
+
+
+    </div>
+    <div id="parallax">
+          <ul id = "ul1">
+            <li ><a href="apple.html">Home</a>
+            <li><a href="apple.html">About Us</a>
+            <li><a href="apple.html">Menu</a>
+            <li><a id="current" href="apple.html">I'm at the Restaurant</a>
+            <li> <a  href="apple.html">Order Online</a>
+            <li><a href="apple.html">Track Order</a>
+            <li><a href="apple.html">Contact Us</a>
+            </ul>
+
+                    <br><br><br><br><br><br><br><br><br><br><br><br>
+
+<center><h1 style="color:#d0f441; font-family:Font; font-size:48;">
+ Welcome! We might have something special for your tastebuds....</h1></center>
+<br><br><br><br><br><br>
+ <div id="bodyDiv">
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+   <center>
+        <button class ="twoBut" style ="background-color:#00b052;" onclick="showSeats()" >
+            Get Me a Seat!
+        </button>
+        <button class ="twoBut" onclick="scrollNow()">
+            I am already seated
+        </button>
+    </center>
+
+
+<div id ="AlreadySeated">
+    <center><H1 style="margin-top:70px; color:#d0f441; font-family:Font;">Feel free to play with your options!</h2></center>
+    <div class ="containStuff">
+    <div class = "ele" style="float:right; background-image: url(saltPepper.png); background-size:auto 115px;" onClick = "updateDB(2)">
+
+
+    </div> 
+    <div class = "ele" style="float:left;" onClick = "updateDB(0)"></div>
+    <center><div class = "ele" style = "background-image: url(cleanTable.png); background-size:auto 150px;" onClick = "updateDB(1)"></div> </center>
+     
+    </div>
+    <div class ="containStuff" style="top:50%;">
+    <div class = "ele" style="float:right; background-image: url(otherService.png); background-size:auto 115px; " onClick = "updateDB(5)">
+
+
+    </div> 
+    <div class = "ele" style="float:left; background-image: url(Bill.png); background-size:auto 115px;" onClick = "updateDB(3)"></div>
+    <center><div class = "ele" style = "background-image: url(takeAway.png); background-size:auto 150px;" onClick = "updateDB(4)"></div> </center>
+     
+    </div>
+   <center> <button class ="twoBut" style ="background-color:#00b052; bottom:80px; width:20%; right:40%; left:40%; position:absolute; background-color:rgb(242,72,80);">
+            Take me to the menu!
+        </button></center>
+        <center>
+         <select id="ddlViewBy">
+  <option value="1">order1</option>
+  <option value="2" selected="selected">order2</option>
+  <option value="3">order3</option>
+  <option value="4">order4</option>
+<option value="17">order17</option></center>
+</select>
+            </div>
+
+ </div>
+
+</div>
+
+
+<script>
+function showSeats(){
+    if(document.getElementById("chooseSeatDiv").style.opacity == 0.0){
+    document.getElementById("parallax").style.opacity = 0.5;
+    document.getElementById("chooseSeatDiv").style.opacity = 1.0;
+}
+else{
+    document.getElementById("parallax").style.opacity = 1.0;
+    document.getElementById("chooseSeatDiv").style.opacity = 0.0;
+}
+    
+}
+function scrollNow(){
+        var scrollY = 0;
+        var height = document.body.clientHeight;
+        document.getElementById("AlreadySeated").style.height = height;
+        var x = setInterval(function() {
+        scrollY+=15;
+        window.scrollTo(0, scrollY);
+        
+        if(scrollY>=height){
+            clearInterval(x);
+            console.log("yayya");
+        }
+
+    }, 0);
+}
+
+
+function updateDB(x){
+if (window.XMLHttpRequest) {
+
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("txtHint").innerHTML = this.responseText;
+            }
+        };
+        var e = document.getElementById("ddlViewBy");
+        var strUser = e.options[e.selectedIndex].value;
+        xmlhttp.open("GET","updateDB.php?value="+x + "&order=" + strUser,true);
+        console.log("updateDB.php?value="+x);
+        xmlhttp.send();
+    }
+
+
+</script>
+
+</body>
+</html>
